@@ -1,5 +1,6 @@
 package com.shakti.pollingapplication.model;
 
+import com.shakti.pollingapplication.model.audit.DateAudit;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
@@ -26,6 +27,7 @@ public class User extends DateAudit {
     @NotBlank
     @Size(max = 40)
     private String name;
+
     @NotBlank
     @Size(max = 15)
     private String username;
@@ -35,9 +37,11 @@ public class User extends DateAudit {
     @Size(max = 40)
     @Email
     private String email;
+
     @NotBlank
     @Size(max = 100)
     private String password;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -63,20 +67,20 @@ public class User extends DateAudit {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getUsername() {
         return username;
     }
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
